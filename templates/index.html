@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VisionGuard - AI vs Real Image Classification (23L-0994)</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <span class="nav-brand">🛡️ VisionGuard <span class="badge-tag">23L-0994_A2_Ops</span></span>
+            <div class="nav-links">
+                <a href="/" class="active">Inspector</a>
+                <a href="/history">Audit History</a>
+                <a href="/health" target="_blank">Health Check</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <header class="hero">
+            <h1>AI-Generated vs. Real Image Detection</h1>
+            <p class="subtitle">Deep learning forensic classification powered by MLOps and TensorFlow</p>
+        </header>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="flash-messages">
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <div class="card upload-card">
+            <h2>Upload Image for Inspection</h2>
+            <p class="card-instruction">Supported formats: JPG, JPEG, PNG, WEBP (Max size: 5MB). Processed strictly in-memory.</p>
+
+            <form action="/" method="POST" enctype="multipart/form-data" class="upload-form">
+                <div class="drop-zone" id="drop-zone">
+                    <span class="drop-zone-prompt">📁 Drag and drop image here or click to browse</span>
+                    <input type="file" name="image" id="file-input" class="drop-zone-input" accept="image/*" required>
+                </div>
+                <button type="submit" class="btn btn-primary" id="analyze-btn">Analyze Authenticity</button>
+            </form>
+        </div>
+
+        {% if result %}
+        <div class="card result-card">
+            <h2>Forensic Analysis Verdict</h2>
+            <div class="verdict-banner {% if result.verdict == 'AI-Generated' %}verdict-ai{% else %}verdict-real{% endif %}">
+                <span class="verdict-title">{{ result.verdict }}</span>
+                <span class="verdict-confidence">{{ result.confidence }}% Confidence</span>
+            </div>
+
+            <div class="details-grid">
+                <div class="detail-item">
+                    <span class="detail-label">Filename</span>
+                    <span class="detail-value">{{ result.filename }}</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Active Model</span>
+                    <span class="detail-value">{{ result.model_name }}</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Inference Latency</span>
+                    <span class="detail-value">{{ result.latency_ms }} ms</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Decision Threshold</span>
+                    <span class="detail-value">{{ result.threshold }}</span>
+                </div>
+            </div>
+
+            <div class="caveat-box">
+                <strong>Forensic Caveat:</strong>
+                <p>{{ result.caveat }}</p>
+            </div>
+        </div>
+        {% endif %}
+    </main>
+
+    <footer class="footer">
+        <p>VisionGuard MLOps Assignment 2 &bull; Roll Number: <strong>23L-0994</strong> &bull; Containerized with Docker</p>
+    </footer>
+
+    <script>
+        const input = document.getElementById('file-input');
+        const dropZone = document.getElementById('drop-zone');
+        input.addEventListener('change', () => {
+            if (input.files.length) {
+                dropZone.querySelector('.drop-zone-prompt').textContent = "Selected: " + input.files[0].name;
+            }
+        });
+    </script>
+</body>
+</html>

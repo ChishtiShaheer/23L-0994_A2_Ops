@@ -1,0 +1,73 @@
+version: "3.8"
+
+# Task 6.3: Multi-Service Container Stack (Web App + Internal Database)
+# Author: 23L-0994 | Project: 23L-0994_A2_Ops
+
+services:
+  # Service 1: Database (Postgres)
+  # - Waits for readiness via internal health check
+  # - Publishes NO external ports (isolated inside Compose internal network)
+  # - Uses named volume for data persistence
+  db:
+    image: postgres:15-alpine
+    container_name: visionguard_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-visionguard_db}
+      POSTGRES_USER: ${POSTGRES_USER:-vg_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-vg_secure_password_23L0994}
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    networks:
+      - visionguard_net
+    expose:
+      - "5432" # Exposed strictly to internal network, no host port published
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  # Service 2: VisionGuard Web Application
+  # - Starts ONLY after database reports healthy status
+  # - Reaches database by service name 'db' on internal network
+  # - Mounts models directory read-only for hot-swappable weights
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: visionguard_web
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "5000:5000"
+    environment:
+      FLASK_ENV: production
+      FLASK_DEBUG: 0
+      PORT: 5000
+      MODEL_PATH: /app/models/champion_model.keras
+      DECISION_THRESHOLD: ${DECISION_THRESHOLD:-0.50}
+      DATABASE_PATH: /app/visionguard.db
+      DATABASE_URL: postgresql://${POSTGRES_USER:-vg_user}:${POSTGRES_PASSWORD:-vg_secure_password_23L0994}@db:5432/${POSTGRES_DB:-visionguard_db}
+    volumes:
+      # Model file delivery decision: Mounted read-only (:ro).
+      # Justification: Separating 50MB+ binary weights from container image prevents image bloat,
+      # enables instantaneous champion model upgrades without multi-gigabyte Docker rebuilds/pushes,
+      # while ':ro' prevents accidental runtime tampering from within the container.
+      - ./models:/app/models:ro
+      - app_db_data:/app/data_db
+    networks:
+      - visionguard_net
+
+volumes:
+  db_data:
+    name: visionguard_postgres_volume
+  app_db_data:
+    name: visionguard_sqlite_volume
+
+networks:
+  visionguard_net:
+    driver: bridge

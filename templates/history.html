@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VisionGuard - Audit History (23L-0994)</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <span class="nav-brand">🛡️ VisionGuard <span class="badge-tag">23L-0994_A2_Ops</span></span>
+            <div class="nav-links">
+                <a href="/">Inspector</a>
+                <a href="/history" class="active">Audit History</a>
+                <a href="/health" target="_blank">Health Check</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <header class="hero">
+            <h1>Database Audit Trail (Task 5)</h1>
+            <p class="subtitle">Permanent queryable logs: what was decided, when, by which model, and how confidently.</p>
+        </header>
+
+        <div class="card table-card">
+            <div class="table-header-flex">
+                <h2>Recorded Search Logs ({{ logs|length }})</h2>
+                <a href="/" class="btn btn-secondary">New Analysis</a>
+            </div>
+
+            {% if logs %}
+            <div class="table-responsive">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Timestamp</th>
+                            <th>Filename</th>
+                            <th>Verdict</th>
+                            <th>Confidence</th>
+                            <th>Model</th>
+                            <th>Latency</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for log in logs %}
+                        <tr>
+                            <td>#{{ log.id }}</td>
+                            <td>{{ log.timestamp }}</td>
+                            <td class="filename-cell">{{ log.filename }}</td>
+                            <td>
+                                <span class="status-pill {% if log.verdict == 'AI-Generated' %}pill-ai{% else %}pill-real{% endif %}">
+                                    {{ log.verdict }}
+                                </span>
+                            </td>
+                            <td><strong>{{ log.confidence }}%</strong></td>
+                            <td><code>{{ log.model_name }}</code></td>
+                            <td>{{ log.latency_ms }} ms</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <div class="empty-state">
+                <p>No inference logs recorded yet. Upload an image to populate the database audit trail.</p>
+            </div>
+            {% endif %}
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>VisionGuard MLOps Assignment 2 &bull; Roll Number: <strong>23L-0994</strong></p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,5 @@
+id,feature_1,feature_2,label
+1,0.25,0.85,real
+2,0.78,0.12,ai
+3,0.44,0.61,real
+4,0.91,0.33,ai

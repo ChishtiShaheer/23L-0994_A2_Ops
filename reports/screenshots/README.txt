@@ -1,0 +1,25 @@
+# Place screenshots here with the following exact filenames:
+# 1.1_env_versions.png
+# 1.2_dataset_audit.png
+# 1.4_dvc_toy.png
+# 2.2_baseline_summary.png
+# 2.3_transfer_curves.png
+# 2.7_tuner_results.png
+# 3.1_mlflow_local.png
+# 3.2_dagshub_setup.png
+# 3.3_run_page.png
+# 3.4_artifacts_tab.png
+# 3.5_comparison_view.png
+# 3.6_model_registry.png
+# 4.1_inference_console.png
+# 4.2_errors_combined.png
+# 4.3_frontend.png
+# 4.4_health_check.png
+# 5.1_history_table.png
+# 6.1_docker_warmup.png
+# 6.2_dockerfile_user.png
+# 6.3_compose_healthy.png
+# 6.5_troubleshooting_logs.png
+# 6.6_ci_runs.png
+# 7.1_postman_cloud_api.png
+# 8.1_flask_cloud_integration.png

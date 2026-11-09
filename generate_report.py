@@ -145,13 +145,13 @@ def build_pdf(filename="23L-0994_VisionGuard.pdf"):
     story.append(HRFlowable(width="100%", thickness=1.5, color=colors.HexColor('#cbd5e1'), spaceAfter=15))
 
     front_data = [
-        [Paragraph("<b>Author / Student Name:</b>", body_style), Paragraph("Shaheer", body_style)],
+        [Paragraph("<b>Author / Student Name:</b>", body_style), Paragraph("Shaheer Chishti", body_style)],
         [Paragraph("<b>Roll Number:</b>", body_style), Paragraph("<b>23L-0994</b>", body_style)],
         [Paragraph("<b>Project Identifier:</b>", body_style), Paragraph("<code>23L-0994_A2_Ops</code>", body_style)],
-        [Paragraph("<b>GitHub Repository:</b>", body_style), Paragraph("<font color='#0284c7'><u>https://github.com/23L-0994/23L-0994_A2_Ops</u></font>", body_style)],
-        [Paragraph("<b>DagsHub Project:</b>", body_style), Paragraph("<font color='#0284c7'><u>https://dagshub.com/shaheer/23L-0994_A2_Ops</u></font>", body_style)],
-        [Paragraph("<b>Live Cloud API URL:</b>", body_style), Paragraph("<font color='#0284c7'><u>https://shaheer-visionguard-api.hf.space/predict</u></font>", body_style)],
-        [Paragraph("<b>Graded Git Commit Hash:</b>", body_style), Paragraph("<code>a4b92c1</code>", body_style)],
+        [Paragraph("<b>GitHub Repository:</b>", body_style), Paragraph("<font color='#0284c7'><u>https://github.com/ChishtiShaheer/23L-0994_A2_Ops</u></font>", body_style)],
+        [Paragraph("<b>DagsHub Project:</b>", body_style), Paragraph("<font color='#0284c7'><u>https://dagshub.com/ChishtiShaheer/23L-0994_A2_Ops</u></font>", body_style)],
+        [Paragraph("<b>Live Cloud API URL:</b>", body_style), Paragraph("<i>To be added post-cloud deployment (Task 7)</i>", body_style)],
+        [Paragraph("<b>Graded Git Commit Hash:</b>", body_style), Paragraph("<code>ce2bb7c</code>", body_style)],
         [Paragraph("<b>AI Assistance Disclosure:</b>", body_style), Paragraph("AI coding assistant was utilized for automated boilerplates, test harnesses, documentation scaffolding, and report layout generation. All pipeline designs, training runs, code debugging, and analytical justifications were executed, verified, and validated independently.", body_style)],
     ]
     t_front = Table(front_data, colWidths=[2.2*inch, 4.3*inch])

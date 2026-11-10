@@ -1,0 +1,6 @@
+Task 4.1 Technical Justification:
+1. Why Loading Model Per Request Is Unacceptable:
+   Loading a deep neural network from disk into memory requires deserializing tens of megabytes of binary weights, allocating GPU/RAM memory, and initializing the TensorFlow computational graph. This causes 2,000ms - 5,000ms latency per HTTP request and quickly exhausts server memory under concurrent load. Loading once at startup (Singleton pattern) reduces request latency to ~20ms - 40ms.
+
+2. Why Training and Serving Preprocessing Must Match Exactly:
+   Neural networks learn spatial filter weights and statistical distributions conditioned on exact image transformations. If a model was trained on [0, 255] normalized to [-1, 1] with bilinear interpolation at 224x224, serving an image scaled to [0, 1] or with altered aspect ratio skews activation distributions, leading to severe domain shift and catastrophic drop in accuracy.

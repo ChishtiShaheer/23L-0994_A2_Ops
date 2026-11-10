@@ -8,6 +8,21 @@ import os
 import tensorflow as tf
 from tensorflow.keras import layers, models
 import pandas as pd
+import keras
+
+def get_output_shape(layer):
+    if isinstance(layer, keras.layers.InputLayer):
+        return str(getattr(layer, "batch_shape", "N/A"))
+    for attr in ("output_shape",):
+        try:
+            return str(getattr(layer, attr))
+        except Exception:
+            pass
+    try:
+        return str(layer.output.shape)
+    except Exception:
+        return "N/A"
+
 
 def build_baseline_cnn(input_shape=(224, 224, 3), learning_rate=1e-3):
     """
@@ -132,7 +147,7 @@ def export_model_summary_table(model, output_csv="reports/baseline_cnn_layers.cs
         layer_data.append({
             "Layer Name": layer.name,
             "Type": layer.__class__.__name__,
-            "Output Shape": str(layer.output_shape),
+            "Output Shape": get_output_shape(layer),   
             "Param Count": layer.count_params(),
             "Trainable": layer.trainable
         })

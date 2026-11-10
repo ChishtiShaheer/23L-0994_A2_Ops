@@ -1,0 +1,6 @@
+Task 2.7 Discussion: Hyperparameter Impact & Validation Overfitting
+1. Most Influential Hyperparameter:
+   The learning rate was overwhelmingly the most decisive hyperparameter. Setting the learning rate too high (1e-2) caused gradient instability and early saturation, whereas 1e-3 to 1e-4 delivered consistent gradient descent progression. Dropout rate ranked second in importance, heavily preventing co-adaptation of features on the smaller image dataset.
+
+2. Risk of Overfitting the Validation Set:
+   Selecting hyperparameter configurations solely based on the highest validation score creates 'validation snooping' or selection bias. When numerous trials are evaluated, a particular configuration might achieve superior validation accuracy purely due to random stochastic variance that happens to fit the idiosyncrasies and noise of that specific validation split. Consequently, the hyperparameter set overfits the validation split, degrading out-of-sample generalization. This necessitates an untouched, held-out test set evaluated strictly once.

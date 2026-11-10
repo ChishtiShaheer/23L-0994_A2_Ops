@@ -1,0 +1,5 @@
+Figure 1: Representative Sample Grid Across Classes
+Interpretation: Visual inspection reveals noticeable differences between the real and synthetic cohorts. AI-generated images frequently exhibit subtle diffusion artifacts, hyper-smooth skin textures, unnatural lighting consistency, or anatomical irregularities in complex regions like fingers and eyes. Conversely, real photos display genuine camera sensor noise, authentic background depth of field, and consistent natural lighting.
+
+Figure 2: Dimensionality & Storage Footprint Histograms
+Interpretation: The width and height distribution analysis indicates standard fixed resolutions commonly used by generative diffusion models (e.g., 512x512 or 1024x1024), whereas real photographs reflect varied camera aspect ratios. The file size histogram shows AI images tend to cluster tightly in file size due to uniform compression during generation pipelines, while real images show greater variance based on ambient scene complexity.

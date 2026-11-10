@@ -1,0 +1,10 @@
+Image 1: True=Real, Pred=AI-Gen, Prob=0.4477 | Hypothesis 1: Heavy motion blur and low resolution obscuring synthetic edge artifacts.
+Image 2: True=Real, Pred=AI-Gen, Prob=0.4544 | Hypothesis 2: Digital camera noise filter resembling diffusion grain texture.
+Image 3: True=Real, Pred=AI-Gen, Prob=0.4507 | Hypothesis 3: High-frequency artistic brush strokes mimicking generative style transfer.
+Image 4: True=Real, Pred=AI-Gen, Prob=0.4696 | Hypothesis 4: Strong backlighting causing unnatural ambient specular reflections.
+Image 5: True=Real, Pred=AI-Gen, Prob=0.4379 | Hypothesis 5: Compression artifacts from repeated JPEG encoding mimicking GAN noise.
+Image 6: True=Real, Pred=AI-Gen, Prob=0.4580 | Hypothesis 6: Extreme macro close-up lacking typical structural contextual cues.
+Image 7: True=Real, Pred=AI-Gen, Prob=0.4561 | Hypothesis 7: Watermark / overlaid graphic confusing shallow spatial feature maps.
+Image 8: True=Real, Pred=AI-Gen, Prob=0.4503 | Hypothesis 8: Stylized HDR tone-mapping causing non-photorealistic chromatic saturation.
+Image 9: True=Real, Pred=AI-Gen, Prob=0.4475 | Hypothesis 9: Smooth cosmetic skin-retouching resembling diffusion face generation.
+Image 10: True=Real, Pred=AI-Gen, Prob=0.4561 | Hypothesis 10: Symmetrical geometric pattern triggering generative pattern bias.

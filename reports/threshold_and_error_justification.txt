@@ -1,0 +1,5 @@
+Task 2.5 Written Justification: Decision Threshold and Error Asymmetry
+- Chosen Decision Threshold: 0.43
+- Rationale: The decision threshold was calibrated on validation data to maximize the balance between false positives and false negatives (F1 optimization).
+- Error Trade-off Analysis: Which error is worse for VisionGuard?
+  In the context of VisionGuard as a verification and integrity platform, calling a REAL photo AI-generated (False Positive) is generally WORSE than calling a fake photo real. Falsely accusing authentic journalists, artists, or legal evidentiary photographs of being AI-generated causes severe reputational damage, copyright disputes, and loss of institutional trust. Conversely, missing an AI-generated image (False Negative) presents misinformation risks, but can be mitigated with downstream secondary review. Therefore, tuning the decision threshold slightly higher minimizes false accusations against genuine content.

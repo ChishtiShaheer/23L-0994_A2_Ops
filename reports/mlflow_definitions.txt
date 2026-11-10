@@ -1,0 +1,7 @@
+Task 3.1 MLOps Definitions:
+1. Experiment: A logical container that groups together related model training runs and iterations aimed at solving a specific ML objective.
+2. Run: A single, distinct execution of machine learning training code within an experiment, recording specific hyperparameters, outputs, and artifacts.
+3. Parameter: A fixed configuration value set prior to training (e.g., learning rate, batch size, optimizer choice) that governs model architecture and training dynamics.
+4. Metric: A quantifiable, dynamic measurement evaluated during or after training (e.g., loss, accuracy, precision) that tracks model convergence and performance over time.
+5. Artifact: Any binary, file, or tangible asset produced by a run (e.g., serialized weights, confusion matrix plots, environment configurations, ROC curves).
+6. Tag: A key-value metadata label applied to runs or experiments for annotation, filtering, and governance (e.g., git commit hash, author, deployment status).

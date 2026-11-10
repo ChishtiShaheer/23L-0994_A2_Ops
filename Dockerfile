@@ -34,7 +34,7 @@ RUN pip install --upgrade pip && \
 COPY src/ ./src/
 COPY templates/ ./templates/
 COPY static/ ./static/
-COPY models/ ./models/
+RUN mkdir -p /app/models
 
 # Ensure application files and working directory are owned by non-root appuser
 RUN chown -R appuser:appgroup /app
